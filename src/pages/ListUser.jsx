@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const ListUser = () => {
     
@@ -28,11 +29,12 @@ const ListUser = () => {
             {
                 users?.map((user) => {
                     return (
-                        <div className='card'>
+                        <div className='card' key={user.id}>
                             <img src={user.avatar} alt="" />
                             <div className='cardtext'>
                                 <h3>{user.first_name} {user.last_name}</h3>
                                 <p>{user.email}</p>
+                                <Link to={`/user/${user.id}`}>View Details</Link>
                             </div>
                         </div>
                     )
