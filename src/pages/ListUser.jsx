@@ -34,7 +34,7 @@ const ListUser = () => {
                             <div className='cardtext'>
                                 <h3>{user.first_name} {user.last_name}</h3>
                                 <p>{user.email}</p>
-                                <Link to={`/user/${user.id}`}>View Details</Link>
+                                <Link to={`/single-user/${user.id}`}>View Details</Link>
                             </div>
                         </div>
                     )
