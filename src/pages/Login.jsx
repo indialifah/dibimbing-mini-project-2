@@ -8,11 +8,11 @@ const Login = () => {
 
   const handleChangeUsername = (a) => {
     setUsername(a.target.value)
-    console.log(a.target.value)
+    // console.log(a.target.value)
   }
   const handleChangePassword = (a) => {
     setPassword(a.target.value)
-    console.log(a.target.value)
+    // console.log(a.target.value)
   }
   const handleLogin = () => {
     try {
