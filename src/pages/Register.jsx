@@ -14,7 +14,7 @@ const Register = () => {
   }
   const handleRegister = () => {
     try {
-      // disini buat simpan data buat akun
+      // disini logic buat simpan data
       console.log('username: '+ username + ' password: '+ password)
     }
     catch (err) {
