@@ -4,7 +4,6 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import ListUser from './pages/ListUser'
 import SingleUser from './pages/SingleUser'
-import './App.css'
 
 function App() {
 
