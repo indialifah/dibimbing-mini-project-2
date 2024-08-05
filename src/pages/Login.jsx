@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
 
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleChangeUsername = (a) => {
-    setUsername(a.target.value)
+  const handleChangeEmail = (a) => {
+    setEmail(a.target.value)
     // console.log(a.target.value)
   }
   const handleChangePassword = (a) => {
@@ -15,14 +16,23 @@ const Login = () => {
     // console.log(a.target.value)
   }
   const handleLogin = () => {
-    try {
-      // usn n pass terisi
-      // validasi username dan password match
-      console.log('username: ' + username + ' password: ' + password)
+    
+    const payload = {
+      email : email,
+      password : password
     }
-    catch(err) {
-      console.log(err.response)
-    }
+
+    axios
+      .post("https://reqres.in/api/login", payload)
+      .then((res) => {
+        console.log(res.data)
+        localStorage.setItem('access_token', res?.data?.token)
+      })
+      .catch((err) => {
+        console.log(err.response)
+        console.log(err?.response?.data?.error)
+      })
+    
   }
 
   return (
@@ -31,8 +41,8 @@ const Login = () => {
             <h1>Login</h1>
             <div className='form-container'>
                 
-                <p>Username</p>
-                <input onChange={handleChangeUsername} type="text" placeholder='username'/>
+                <p>Email</p>
+                <input onChange={handleChangeEmail} type="text" placeholder='email'/>
                 
                 <p>Password</p>
                 <input onChange={handleChangePassword} type="text" placeholder='password'/>
