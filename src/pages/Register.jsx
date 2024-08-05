@@ -1,25 +1,40 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
 
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleChangeUsername = (a) => {
-    setUsername(a.target.value)
+  const navigate = useNavigate()
+
+  const handleChangeEmail = (a) => {
+    setEmail(a.target.value)
   }
   const handleChangePassword = (a) => {
     setPassword(a.target.value)
   }
   const handleRegister = () => {
-    try {
-      // disini logic buat simpan data
-      console.log('username: '+ username + ' password: '+ password)
+    
+    const payload = {
+      email : email,
+      password : password
     }
-    catch (err) {
-      console.log(err.response)
-    }
+
+    axios
+      .post("https://reqres.in/api/register", payload)
+      .then((res) => {
+        console.log(res.data)
+        localStorage.setItem('access_token', res?.data?.token)
+        setTimeout(() => {
+          navigate('/')
+        }, 2000)
+      })
+      .catch((err) => {
+        console.log(err.response)
+        console.log(err?.response?.data?.error)
+      })
   }
 
   return (
@@ -29,7 +44,7 @@ const Register = () => {
             <div className='form-container'>
                 
                 <p>Username</p>
-                <input onChange={handleChangeUsername} type="text" placeholder='username'/>
+                <input onChange={handleChangeEmail} type="text" placeholder='username'/>
                 
                 <p>Password</p>
                 <input onChange={handleChangePassword} type="text" placeholder='password'/>
