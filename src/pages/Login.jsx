@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const navigate = useNavigate()
 
   const handleChangeEmail = (a) => {
     setEmail(a.target.value)
@@ -27,6 +29,9 @@ const Login = () => {
       .then((res) => {
         console.log(res.data)
         localStorage.setItem('access_token', res?.data?.token)
+        setTimeout(() => {
+          navigate('/')
+        }, 2000)
       })
       .catch((err) => {
         console.log(err.response)
