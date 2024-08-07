@@ -44,7 +44,9 @@ const Login = () => {
     <div className="grid place-items-center h-screen">
     <div className='md:w-3/5 mx-auto bg-white bg-opacity-85 shadow-lg rounded-xl'>
       <div className='flex'>
+          
           <div className='lg:w-2/5 md:w-1/3 bg-sky-500 rounded-lg m-2'></div>
+          
           <div className='lg:w-3/5 md:w-2/3 w-full p-8'>
             <h1 className='lg:text-3xl md:text-2xl text-3xl font-bold'>Welcome back! 👋</h1>
             <p className='py-1'>Please log in to your account</p>
