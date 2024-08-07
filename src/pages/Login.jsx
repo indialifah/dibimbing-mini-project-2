@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import image from '../assets/illustration.jpg'
 
 const Login = () => {
 
@@ -45,7 +46,11 @@ const Login = () => {
     <div className='md:w-3/5 mx-auto bg-white bg-opacity-85 shadow-lg rounded-xl'>
       <div className='flex'>
           
-          <div className='lg:w-2/5 md:w-1/3 bg-sky-500 rounded-lg m-2'></div>
+          <div className='lg:w-2/5 md:w-1/3 rounded-lg m-2' 
+            style={{ 
+            backgroundImage: `url(${image})`,
+            backgroundSize: 'cover'
+          }}></div>
           
           <div className='lg:w-3/5 md:w-2/3 w-full p-8'>
             <h1 className='lg:text-3xl md:text-2xl text-3xl font-bold'>Welcome back! 👋</h1>
@@ -57,7 +62,7 @@ const Login = () => {
                   <input onChange={handleChangeEmail} type="text" placeholder='E-mail'
                     className='my-2 rounded-xl p-2 w-[100%] focus:outline-none focus:border-sky-600 border-2'/>
                 </div>
-                <div className='md:my2 my-8'>
+                <div className='md:my-2 my-8'>
                   <p>Password</p>
                   <input onChange={handleChangePassword} type="text" placeholder='Password'
                     className="my-2 rounded-xl p-2 w-[100%] focus:outline-none focus:border-sky-600 border-2"/>
