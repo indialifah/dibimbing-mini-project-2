@@ -20,9 +20,23 @@ const ListUser = () => {
         getUsers()
     }, [])
 
+    const isLoggedIn = localStorage.getItem('access_token')
+
+    const handleLogout = () => {
+        localStorage.clear()
+        setTimeout(() => {
+            navigate('/login')
+        }, 2000)
+    }
+
   return (
     <div>
-        <h1 className='text-3xl font-semibold p-10 bg-sky-700 text-white'>List User</h1>
+        <div className=' bg-sky-700 flex justify-between'>
+            <h1 className='text-3xl font-semibold p-10 text-white'>List User</h1>
+            {isLoggedIn !== null && 
+                <button className=' text-white text-lg font-medium m-8 px-4 rounded-full border-white border-2 hover:bg-white hover:text-sky-700' onClick={handleLogout}>Logout</button>
+            }
+        </div>
         {/* <hr className='py-2 border-sky-700 border-2'/> */}
         <div className='justify-center mx-8 my-8 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8'>
 
