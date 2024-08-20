@@ -1,10 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ListUser = () => {
     
     const [users, setUsers] = useState([])
+
+    const navigate = useNavigate()
+
     const getUsers = () => {
         axios
             .get('https://reqres.in/api/users')
