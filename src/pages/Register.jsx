@@ -3,10 +3,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import image from '../assets/illustration.jpg'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Register = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const [error, setError] = useState('')
 
   const navigate = useNavigate()
 
@@ -27,14 +32,17 @@ const Register = () => {
       .post("https://reqres.in/api/register", payload)
       .then((res) => {
         console.log(res.data)
-        localStorage.setItem('access_token', res?.data?.token)
+        setError('')
+        toast.success("Your account has been successfully created! 🎉") 
+        // localStorage.setItem('access_token', res?.data?.token)
         setTimeout(() => {
-          navigate('/')
+          navigate('/login')
         }, 2000)
       })
       .catch((err) => {
         console.log(err.response)
-        console.log(err?.response?.data?.error)
+        setError(err?.response?.data?.error)
+        toast.error("Register failed! Please try again.")
       })
   }
 
@@ -55,14 +63,16 @@ const Register = () => {
                     
                     <div className='md:my-2 my-8'>
                       <p>E-mail</p>
-                      <input onChange={handleChangeEmail} type="text" placeholder='E-mail'
+                      <input onChange={handleChangeEmail} type="text" placeholder='E-mail' required
                         className='my-2 rounded-xl p-2 w-[100%] focus:outline-none focus:border-sky-600 border-2'/>
                     </div>
                     <div className='md:my-2 my-8'>
                       <p>Password</p>
-                      <input onChange={handleChangePassword} type="text" placeholder='Password'
+                      <input onChange={handleChangePassword} type="text" placeholder='Password' required
                         className='my-2 rounded-xl p-2 w-[100%] focus:outline-none focus:border-sky-600 border-2'/>
                     </div>
+
+                    {error.length ? <p className='text-red-600 font-medium text-center'>{error}</p> : null}
                     
                     <div className='flex flex-col'>
                       <button onClick={handleRegister}
@@ -79,6 +89,7 @@ const Register = () => {
                 
             </div>
         </div>
+        <ToastContainer className='rounded-xl' autoClose={2000}/>
       </div>
     </div>
   )
